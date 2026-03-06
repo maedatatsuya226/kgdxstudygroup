@@ -1,6 +1,7 @@
 "use client";
+export const runtime = 'edge';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { fetchGasApi, getSessionToken } from "@/lib/api";
 
