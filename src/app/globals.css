@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #fff7ed;
-  --color-primary-100: #ffedd5;
-  --color-primary-200: #fed7aa;
-  --color-primary-300: #fdba74;
-  --color-primary-400: #fb923c;
-  --color-primary-500: #f97316;
-  --color-primary-600: #ea580c;
-  --color-primary-700: #c2410c;
-  --color-primary-800: #9a3412;
-  --color-primary-900: #7c2d12;
+  /* Prime Video Blue palette */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
 
-  --color-background: #f8fafc;
-  --color-surface: #ffffff;
-  --color-foreground: #0f172a;
+  /* Deep navy background */
+  --color-background: #0d1117;
+  --color-surface: #161b22;
+  --color-foreground: #e6edf3;
 
   --font-sans: var(--font-noto-sans-jp), sans-serif;
 }
@@ -30,10 +32,10 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Netflix-style Cinematic Dark Scrollbar */
+/* Prime Video style scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -41,15 +43,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(59, 130, 246, 0.25);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(59, 130, 246, 0.5);
 }
 
-/* Hide scrollbar for library rows completely to preserve the Netflix aesthetics */
+/* Hide scrollbar for carousel rows */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -57,4 +59,13 @@ body {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Card glow effect on hover */
+.card-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6), 0 20px 40px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05) translateY(-6px);
 }

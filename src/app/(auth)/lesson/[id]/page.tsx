@@ -88,7 +88,6 @@ export default function LessonPage() {
             }
         }
     };
-    // ----------------------
 
     useEffect(() => {
         const fetchData = async () => {
@@ -142,17 +141,17 @@ export default function LessonPage() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[50vh]">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mb-4 shadow-[0_0_15px_rgba(234,88,12,0.5)]"></div>
+                <div className="w-12 h-12 rounded-full border-2 border-transparent border-t-blue-500 border-r-blue-400 animate-spin shadow-[0_0_20px_rgba(59,130,246,0.4)]"></div>
             </div>
         );
     }
 
     if (error || !lesson) {
         return (
-            <div className="bg-red-950/50 text-red-500 p-8 rounded-lg text-center font-medium border border-red-900/50 max-w-xl mx-auto mt-20">
+            <div className="bg-red-950/40 text-red-400 p-8 rounded-xl text-center font-medium border border-red-900/50 max-w-xl mx-auto mt-20">
                 {error || "データが見つかりません"}
                 <div className="mt-6">
-                    <button onClick={() => router.push("/library")} className="bg-white text-black px-6 py-2 rounded font-bold hover:bg-white/80 transition-colors">
+                    <button onClick={() => router.push("/library")} className="bg-white text-black px-6 py-2.5 rounded-lg font-bold hover:bg-white/85 transition-colors">
                         ライブラリに戻る
                     </button>
                 </div>
@@ -161,23 +160,23 @@ export default function LessonPage() {
     }
 
     return (
-        <div className="animate-in fade-in zoom-in-95 duration-700 pb-20 max-w-[1600px] mx-auto">
+        <div className="animate-in fade-in zoom-in-95 duration-700 pb-20 px-4 sm:px-6 lg:px-10">
 
-            {/* Nav area */}
-            <div className="flex items-center justify-between mb-8 px-2">
+            {/* Back button */}
+            <div className="flex items-center justify-between mb-6">
                 <button
                     onClick={() => router.push("/library")}
-                    className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-semibold"
+                    className="group flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-semibold text-sm"
                 >
                     <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                     一覧に戻る
                 </button>
             </div>
 
-            <div className="flex flex-col xl:flex-row gap-8 lg:gap-12">
-                {/* Main Video Area */}
-                <div className="flex-1 flex flex-col gap-6">
-                    <div className="bg-black rounded-xl overflow-hidden shadow-2xl border border-zinc-800/50 relative w-full aspect-video ring-1 ring-white/10 group">
+            <div className="flex flex-col xl:flex-row gap-8 lg:gap-10">
+                {/* ===== Main Video Area ===== */}
+                <div className="flex-1 flex flex-col gap-5">
+                    <div className="bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800/50 relative w-full aspect-video ring-1 ring-white/5">
                         {lesson.video_url ? (
                             <YouTube
                                 videoId={getYouTubeId(lesson.video_url) || ""}
@@ -196,12 +195,12 @@ export default function LessonPage() {
                                 onStateChange={onStateChange}
                             />
                         ) : (
-                            <div className="flex items-center justify-center h-full text-zinc-500 font-semibold">動画URLが未設定です</div>
+                            <div className="flex items-center justify-center h-full text-slate-500 font-semibold">動画URLが未設定です</div>
                         )}
 
-                        {/* 警告メッセージ (Toast) */}
+                        {/* Watch warning toast */}
                         {watchWarning && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/90 text-red-500 px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-900 animate-in slide-in-from-top-4 fade-in duration-300 z-50 flex items-center gap-2 text-sm backdrop-blur-md">
+                            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-slate-950/95 text-red-400 px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-900/60 animate-in slide-in-from-top-4 fade-in duration-300 z-50 flex items-center gap-2 text-sm backdrop-blur-md">
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                 {watchWarning}
                             </div>
@@ -209,36 +208,38 @@ export default function LessonPage() {
                     </div>
 
                     <div>
-                        <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-2 drop-shadow-lg">{lesson.title}</h1>
-                        <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">ID: {lesson.lesson_id} •
-                            <a href={lesson.video_url} target="_blank" rel="noopener noreferrer" className="ml-2 bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded hover:bg-zinc-700 transition-colors">別タブで開く</a>
+                        <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-2">{lesson.title}</h1>
+                        <p className="text-slate-500 font-mono text-xs uppercase tracking-widest">
+                            ID: {lesson.lesson_id} •
+                            <a href={lesson.video_url} target="_blank" rel="noopener noreferrer" className="ml-2 bg-slate-800 text-slate-300 px-2 py-0.5 rounded hover:bg-slate-700 transition-colors">別タブで開く</a>
                         </p>
                     </div>
                 </div>
 
-                {/* Feedback Panel */}
-                <div className="xl:w-[450px] flex-shrink-0">
-                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl h-full flex flex-col overflow-hidden shadow-2xl relative">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                {/* ===== Feedback / Question Panel ===== */}
+                <div className="xl:w-[440px] flex-shrink-0">
+                    <div className="bg-slate-900/80 border border-slate-800/60 rounded-2xl h-full flex flex-col overflow-hidden shadow-2xl relative">
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
+                        <div className="absolute top-3 right-3 w-24 h-24 bg-blue-600/8 rounded-full blur-2xl pointer-events-none"></div>
 
-                        <div className="p-6 border-b border-zinc-800/50">
+                        <div className="p-6 border-b border-slate-800/50">
                             <h2 className="font-black text-xl text-white tracking-tight flex items-center gap-2">
-                                <span className="w-1.5 h-6 bg-orange-600 rounded-full"></span>
+                                <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
                                 課題・感想
                             </h2>
                         </div>
 
                         <div className="p-6 flex-1 flex flex-col gap-6 relative z-10">
                             <div>
-                                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">質問内容</label>
-                                <div className="bg-zinc-950/50 rounded-lg p-5 text-sm leading-relaxed font-medium text-zinc-300 border border-zinc-800/50 shadow-inner">
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">質問内容</label>
+                                <div className="bg-slate-950/60 rounded-xl p-5 text-sm leading-relaxed font-medium text-slate-300 border border-slate-800/50 shadow-inner">
                                     {lesson.question || "この動画を見て学んだことや、抱いた感想を入力してください。"}
                                 </div>
                             </div>
 
                             <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
                                 <div className="flex-1 min-h-[200px] flex flex-col">
-                                    <label htmlFor="answer" className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-3">
+                                    <label htmlFor="answer" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
                                         あなたの回答
                                     </label>
                                     <textarea
@@ -246,7 +247,7 @@ export default function LessonPage() {
                                         required
                                         value={answer}
                                         onChange={(e) => setAnswer(e.target.value)}
-                                        className="w-full flex-1 p-5 rounded-lg border border-zinc-700 bg-zinc-800/80 text-white placeholder-zinc-500 focus:bg-zinc-800 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors resize-none shadow-inner"
+                                        className="w-full flex-1 p-4 rounded-xl border border-slate-700 bg-slate-800/70 text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all resize-none shadow-inner"
                                         placeholder="回答を入力..."
                                     />
                                 </div>
@@ -255,7 +256,7 @@ export default function LessonPage() {
                                     <button
                                         type="submit"
                                         disabled={submitting || !answer.trim()}
-                                        className="w-full py-4 px-6 bg-orange-600 text-white font-bold rounded-lg shadow-lg hover:bg-orange-500 hover:shadow-orange-600/20 hover:-translate-y-0.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none flex justify-center items-center gap-2"
+                                        className="w-full py-4 px-6 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-0.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none flex justify-center items-center gap-2"
                                     >
                                         {submitting ? (
                                             <>
@@ -269,7 +270,7 @@ export default function LessonPage() {
                                     </button>
 
                                     {submitMsg && (
-                                        <div className="mt-4 p-3 bg-emerald-950/50 border border-emerald-900/50 rounded text-center font-bold text-emerald-500 text-sm animate-in fade-in">
+                                        <div className="mt-4 p-3 bg-emerald-950/40 border border-emerald-900/50 rounded-xl text-center font-bold text-emerald-400 text-sm animate-in fade-in">
                                             {submitMsg}
                                         </div>
                                     )}
@@ -278,7 +279,6 @@ export default function LessonPage() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

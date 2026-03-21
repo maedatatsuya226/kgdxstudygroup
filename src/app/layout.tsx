@@ -9,22 +9,22 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "新小文字病院 E-Learning",
-  description: "新入職員向け動画研修プラットフォーム",
+  title: "KGDXStudy Group",
+  description: "KGDXStudy Group 動画研修プラットフォーム",
   manifest: "/manifest.json",
   icons: {
-    icon: '/icon.jpg?v=3',
-    apple: '/home-icon.png?v=2',
+    icon: '/kgdx-logo.png',
+    apple: '/kgdx-logo.png',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "E-Learning",
+    title: "KGDXStudy Group",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b", // PWAスマホでの上部ステータスバーを完全な黒（Dark Zinc）化
+  themeColor: "#0d1117", // Prime Video Deep Navy
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

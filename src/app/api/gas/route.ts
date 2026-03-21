@@ -4,7 +4,7 @@ export const runtime = 'edge';
 
 // 本来なら環境変数 (process.env.GAS_URL) に設定しますが、
 // 今回は動作確認のため一時的にここに記載するか、デプロイ時に修正してください。
-const GAS_DEPLOY_URL = 'https://script.google.com/macros/s/AKfycbyL5v07OgrVdyaYgc7HqxNHjpUI_JS6pCRubfbP8LExIscwdQ3Qon1fsVgdPnOgv0G2OQ/exec';
+const GAS_DEPLOY_URL = 'https://script.google.com/macros/s/AKfycbxdNGkUlxXtgPEYallZz4ow3naWfWGNX2YUPesCa92ua5ZrrOIfit_BoXdkn2ssNkHq/exec';
 
 export async function POST(request: Request) {
     try {
