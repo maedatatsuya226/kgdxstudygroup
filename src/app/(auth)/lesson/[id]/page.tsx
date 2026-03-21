@@ -22,17 +22,18 @@ export default function LessonPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const [answer, setAnswer] = useState("");
-    const [submitting, setSubmitting] = useState(false);
-    const [submitMsg, setSubmitMsg] = useState("");
+    // DISABLED: 感想フォームは現在非実装
+    // const [answer, setAnswer] = useState("");
+    // const [submitting, setSubmitting] = useState(false);
+    // const [submitMsg, setSubmitMsg] = useState("");
 
-    // --- 視聴判定ロジック用 ---
-    const [isPlaying, setIsPlaying] = useState(false);
-    const accumulatedTimeRef = useRef(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
-    const durationRef = useRef(0);
-    const [watchWarning, setWatchWarning] = useState("");
-    const [isWatched, setIsWatched] = useState(false);
+    // DISABLED: 90%視聴チェックは現在非実装
+    // const [isPlaying, setIsPlaying] = useState(false);
+    // const accumulatedTimeRef = useRef(0);
+    // const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    // const durationRef = useRef(0);
+    // const [watchWarning, setWatchWarning] = useState("");
+    // const [isWatched, setIsWatched] = useState(false);
 
     const getYouTubeId = (url: string) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -40,54 +41,10 @@ export default function LessonPage() {
         return (match && match[2].length === 11) ? match[2] : null;
     };
 
-    useEffect(() => {
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-        };
-    }, []);
-
-    const onReady = (event: any) => {
-        durationRef.current = event.target.getDuration();
-    };
-
-    const onStateChange = (event: any) => {
-        if (event.data === 1) { // PLAYING
-            setIsPlaying(true);
-            if (!intervalRef.current) {
-                intervalRef.current = setInterval(() => {
-                    accumulatedTimeRef.current += 1;
-                }, 1000);
-            }
-        } else {
-            setIsPlaying(false);
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-                intervalRef.current = null;
-            }
-        }
-
-        if (event.data === 0) { // ENDED
-            checkCompletion();
-        }
-    };
-
-    const checkCompletion = () => {
-        if (durationRef.current > 0 && !isWatched) {
-            const requiredTime = durationRef.current * 0.9;
-            if (accumulatedTimeRef.current >= requiredTime) {
-                setIsWatched(true);
-                const token = getSessionToken();
-                if (token) {
-                    fetchGasApi("recordView", { token, lessonId }).catch(e => console.error(e));
-                }
-            } else {
-                setWatchWarning("スキップせずに最後までご視聴ください");
-                setTimeout(() => setWatchWarning(""), 5000);
-            }
-        }
-    };
+    // DISABLED: 視聴完了ロジック (再有効化時はコメントを解除)
+    // const onReady = (event: any) => { durationRef.current = event.target.getDuration(); };
+    // const onStateChange = (event: any) => { ... };
+    // const checkCompletion = () => { ... };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -111,31 +68,8 @@ export default function LessonPage() {
         fetchData();
     }, [lessonId, router]);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!answer.trim()) return;
-
-        if (!confirm("送信しますか？（送信後の修正はできません）")) return;
-
-        setSubmitting(true);
-        setSubmitMsg("");
-
-        const token = getSessionToken();
-        try {
-            const res = await fetchGasApi("submitFeedback", { token, lessonId, answer });
-            if (res.ok) {
-                setAnswer("");
-                setSubmitMsg("✅ 送信しました！お疲れ様でした。");
-                setTimeout(() => router.push("/library"), 2000);
-            } else {
-                alert("送信失敗: " + (res.message || "不明なエラー"));
-            }
-        } catch (err) {
-            alert("通信エラーが発生しました");
-        } finally {
-            setSubmitting(false);
-        }
-    };
+    // DISABLED: 感想送信フォームは現在非実装
+    // const handleSubmit = async (e: React.FormEvent) => { ... };
 
     if (loading) {
         return (
@@ -172,9 +106,8 @@ export default function LessonPage() {
                 </button>
             </div>
 
-            <div className="flex flex-col xl:flex-row gap-8 lg:gap-10">
-                {/* ===== Main Video Area ===== */}
-                <div className="flex-1 flex flex-col gap-5">
+            {/* 動画エリアのみ表示（感想パネルは現在非実装） */}
+                <div className="flex flex-col gap-5">
                     <div className="bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800/50 relative w-full aspect-video ring-1 ring-white/5">
                         {lesson.video_url ? (
                             <YouTube
@@ -190,19 +123,9 @@ export default function LessonPage() {
                                 }}
                                 className="absolute inset-0 w-full h-full"
                                 iframeClassName="w-full h-full"
-                                onReady={onReady}
-                                onStateChange={onStateChange}
                             />
                         ) : (
                             <div className="flex items-center justify-center h-full text-slate-500 font-semibold">動画URLが未設定です</div>
-                        )}
-
-                        {/* Watch warning toast */}
-                        {watchWarning && (
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-slate-950/95 text-red-400 px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-900/60 animate-in slide-in-from-top-4 fade-in duration-300 z-50 flex items-center gap-2 text-sm backdrop-blur-md">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                                {watchWarning}
-                            </div>
                         )}
                     </div>
 
@@ -215,70 +138,9 @@ export default function LessonPage() {
                     </div>
                 </div>
 
-                {/* ===== Feedback / Question Panel ===== */}
-                <div className="xl:w-[440px] flex-shrink-0">
-                    <div className="bg-slate-900/80 border border-slate-800/60 rounded-2xl h-full flex flex-col overflow-hidden shadow-2xl relative">
-                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"></div>
-                        <div className="absolute top-3 right-3 w-24 h-24 bg-blue-600/8 rounded-full blur-2xl pointer-events-none"></div>
-
-                        <div className="p-6 border-b border-slate-800/50">
-                            <h2 className="font-black text-xl text-white tracking-tight flex items-center gap-2">
-                                <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
-                                課題・感想
-                            </h2>
-                        </div>
-
-                        <div className="p-6 flex-1 flex flex-col gap-6 relative z-10">
-                            <div>
-                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">質問内容</label>
-                                <div className="bg-slate-950/60 rounded-xl p-5 text-sm leading-relaxed font-medium text-slate-300 border border-slate-800/50 shadow-inner">
-                                    {lesson.question || "この動画を見て学んだことや、抱いた感想を入力してください。"}
-                                </div>
-                            </div>
-
-                            <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
-                                <div className="flex-1 min-h-[200px] flex flex-col">
-                                    <label htmlFor="answer" className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">
-                                        あなたの回答
-                                    </label>
-                                    <textarea
-                                        id="answer"
-                                        required
-                                        value={answer}
-                                        onChange={(e) => setAnswer(e.target.value)}
-                                        className="w-full flex-1 p-4 rounded-xl border border-slate-700 bg-slate-800/70 text-white placeholder-slate-500 focus:bg-slate-800 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all resize-none shadow-inner"
-                                        placeholder="回答を入力..."
-                                    />
-                                </div>
-
-                                <div className="pt-2">
-                                    <button
-                                        type="submit"
-                                        disabled={submitting || !answer.trim()}
-                                        className="w-full py-4 px-6 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-0.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none flex justify-center items-center gap-2"
-                                    >
-                                        {submitting ? (
-                                            <>
-                                                <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                </svg>
-                                                <span>送信中...</span>
-                                            </>
-                                        ) : "回答を送信"}
-                                    </button>
-
-                                    {submitMsg && (
-                                        <div className="mt-4 p-3 bg-emerald-950/40 border border-emerald-900/50 rounded-xl text-center font-bold text-emerald-400 text-sm animate-in fade-in">
-                                            {submitMsg}
-                                        </div>
-                                    )}
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {/* DISABLED: 感想・課題パネル（再有効化時はコメントを解除）
+                <div className="xl:w-[440px] flex-shrink-0"> ... </div>
+                */}
         </div>
     );
 }
