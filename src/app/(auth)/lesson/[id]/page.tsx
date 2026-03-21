@@ -91,11 +91,10 @@ export default function LessonPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = getSessionToken();
-            if (!token) {
-                router.replace("/");
-                return;
-            }
+            // DISABLED: Token check bypassed while login is disabled
+            // const token = getSessionToken();
+            // if (!token) { router.replace("/"); return; }
+            const token = getSessionToken() || "";
             try {
                 const res = await fetchGasApi("getLesson", { token, lessonId });
                 if (res.ok) {
