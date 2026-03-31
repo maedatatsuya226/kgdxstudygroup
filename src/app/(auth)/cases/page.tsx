@@ -73,7 +73,8 @@ export default function CaseGalleryPage() {
         setCases(prev => prev.map(c => c.ts === ts ? { ...c, likes: (c.likes || 0) + 1 } : c));
 
         try {
-            await fetchGasApi("likeCase", { id: ts });
+            // Send both id and ts to ensure compatibility with any GAS version
+            await fetchGasApi("likeCase", { id: ts, ts: ts });
         } catch (err) {
             console.error("Like failed", err);
         }
