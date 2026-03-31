@@ -105,16 +105,25 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                             >
                                 ライブラリ
                             </button>
-                            {/* DISABLED: Admin nav tabs - role check disabled with auth
-                            {user?.role === 'admin' && (
-                                <button
-                                    onClick={() => router.push('/admin/users')}
-                                    className={`px-5 py-2 rounded text-sm font-semibold transition-all ${pathname?.startsWith('/admin/users') ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
-                                >
-                                    受講管理
-                                </button>
-                            )}
-                            */}
+                            <button
+                                onClick={() => router.push('/cases')}
+                                className={`px-5 py-2 rounded text-sm font-semibold transition-all ${pathname?.startsWith('/cases') ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                            >
+                                事例投稿
+                            </button>
+                        </div>
+
+                        {/* Floating Action Button (FAB) for mobile and desktop */}
+                        <div className="fixed bottom-8 right-8 z-[100]">
+                            <button
+                                onClick={() => router.push('/cases/new')}
+                                className="group flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white w-14 h-14 md:w-auto md:px-6 md:h-14 rounded-full md:rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
+                            >
+                                <svg className="w-6 h-6 transition-transform group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                                </svg>
+                                <span className="hidden md:block font-black tracking-tight">事例を投稿する</span>
+                            </button>
                         </div>
 
                         {/* DISABLED: User area - hidden until auth is re-enabled
