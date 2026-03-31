@@ -15,12 +15,13 @@ export default function NewCasePage() {
         title: "",
         content: "",
         name: "",
-        facility: ""
+        hospital: "",
+        department: ""
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!form.title || !form.content || !form.name || !form.facility) {
+        if (!form.title || !form.content || !form.name || !form.hospital || !form.department) {
             setError("全ての項目を入力してください");
             return;
         }
@@ -94,7 +95,7 @@ export default function NewCasePage() {
                                 <label className="text-sm font-bold text-slate-400 ml-1">事例のタイトル</label>
                                 <input
                                     type="text"
-                                    placeholder="例：歩行器変更による活動量向上"
+                                    placeholder="例：生成AIを活用した紹介状作成の自動化"
                                     value={form.title}
                                     onChange={(e) => setForm({ ...form, title: e.target.value })}
                                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
@@ -106,7 +107,7 @@ export default function NewCasePage() {
                             <div className="space-y-2">
                                 <label className="text-sm font-bold text-slate-400 ml-1">試した内容・結果</label>
                                 <textarea
-                                    placeholder="どのようなことを試して、どのような結果（変化）が得られたかを記入してください。"
+                                    placeholder="どのようなツール（GAS、生成AI、Excel等）を使い、どのような効果（時短、ミス削減、スタッフの負担軽減等）が得られたかを記入してください。"
                                     value={form.content}
                                     onChange={(e) => setForm({ ...form, content: e.target.value })}
                                     rows={6}
@@ -115,33 +116,46 @@ export default function NewCasePage() {
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                {/* Name */}
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-400 ml-1">お名前（または愛称）</label>
-                                    <input
-                                        type="text"
-                                        placeholder="例：リハ太郎"
-                                        value={form.name}
-                                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
-                                        required
-                                    />
-                                </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {/* Hospital */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-slate-400 ml-1">病院名</label>
+                            <input
+                                type="text"
+                                placeholder="例：〇〇総合病院"
+                                value={form.hospital}
+                                onChange={(e) => setForm({ ...form, hospital: e.target.value })}
+                                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
+                                required
+                            />
+                        </div>
 
-                                {/* Facility */}
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-400 ml-1">施設名・部署名</label>
-                                    <input
-                                        type="text"
-                                        placeholder="例：〇〇病院 リハ科"
-                                        value={form.facility}
-                                        onChange={(e) => setForm({ ...form, facility: e.target.value })}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
-                                        required
-                                    />
-                                </div>
-                            </div>
+                        {/* Department */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-slate-400 ml-1">部署名</label>
+                            <input
+                                type="text"
+                                placeholder="例：リハビリテーション科"
+                                value={form.department}
+                                onChange={(e) => setForm({ ...form, department: e.target.value })}
+                                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    {/* Name */}
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-400 ml-1">お名前</label>
+                        <input
+                            type="text"
+                            placeholder="例：カマチ 太郎"
+                            value={form.name}
+                            onChange={(e) => setForm({ ...form, name: e.target.value })}
+                            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-5 py-4 text-white placeholder-slate-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
+                            required
+                        />
+                    </div>
                         </div>
 
                         {error && (

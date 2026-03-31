@@ -9,7 +9,9 @@ type Case = {
     ts: string;
     title: string;
     content: string;
-    facility: string;
+    hospital: string;
+    department: string;
+    facility?: string; // For compatibility
     name: string;
     status: string;
 };
@@ -129,7 +131,9 @@ export default function CaseGalleryPage() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-xs font-bold text-slate-200">{c.name}</span>
-                                        <span className="text-[10px] text-slate-500 font-semibold">{c.facility}</span>
+                                        <span className="text-[10px] text-slate-500 font-semibold">
+                                            {c.hospital || c.facility} / {c.department}
+                                        </span>
                                     </div>
                                     {c.status === "Selected" && (
                                         <div className="ml-auto">
