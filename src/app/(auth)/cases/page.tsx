@@ -73,7 +73,7 @@ export default function CaseGalleryPage() {
         setCases(prev => prev.map(c => c.ts === ts ? { ...c, likes: (c.likes || 0) + 1 } : c));
 
         try {
-            await fetchGasApi("likeCase", { ts });
+            await fetchGasApi("likeCase", { id: ts });
         } catch (err) {
             console.error("Like failed", err);
         }
@@ -82,12 +82,12 @@ export default function CaseGalleryPage() {
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 pb-20 animate-in fade-in duration-700">
             {/* Hero Header Area */}
-            <div className="relative w-full pt-24 pb-20 px-4 sm:px-6 lg:px-10 border-b border-slate-900 overflow-hidden">
+            <div className="relative w-full pt-20 pb-16 min-h-[40vh] flex items-center px-4 sm:px-6 lg:px-10 border-b border-slate-900 overflow-hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-950 to-slate-950"></div>
                 <div className="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
                 
-                <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center space-y-10">
-                    <div className="space-y-4">
+                <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 md:space-y-10">
+                    <div className="space-y-3 sm:space-y-4">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -96,7 +96,7 @@ export default function CaseGalleryPage() {
                             <span className="text-[10px] font-black tracking-[0.2em] uppercase">LIVE STREAMING IDEAS</span>
                         </div>
                         
-                        <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white">
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter text-white">
                             事例投稿<span className="text-blue-500">コーナー</span>
                         </h1>
                     </div>

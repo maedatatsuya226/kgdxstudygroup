@@ -219,7 +219,7 @@ export default function LibraryPage() {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
             {/* ===== Prime Video Hero Section ===== */}
-            <div className="relative w-full h-[52vh] min-h-[400px] mb-10 flex items-end overflow-hidden">
+            <div className="relative w-full h-[52vh] min-h-[400px] mb-8 flex items-end overflow-hidden">
                 <div className="absolute inset-0 z-0 bg-slate-900">
                     {heroLesson?.thumbnail && (
                         <img src={heroLesson.thumbnail} className="w-full h-full object-cover opacity-35 mix-blend-luminosity" alt="Featured" />
@@ -275,40 +275,36 @@ export default function LibraryPage() {
             </div>
 
             {/* ===== Case Submission Banner (Belt) ===== */}
-            <div className="px-4 sm:px-6 lg:px-10 mb-12">
+            <div className="px-4 sm:px-6 lg:px-10 mb-8 sm:mb-12">
                 <div 
                     onClick={() => router.push("/cases/new")}
-                    className="relative w-full py-12 px-6 sm:px-10 rounded-2xl overflow-hidden cursor-pointer group transition-all hover:scale-[1.005] active:scale-[0.99] shadow-2xl border border-blue-500/20"
+                    className="relative w-full py-8 sm:py-12 px-5 sm:px-10 rounded-2xl overflow-hidden cursor-pointer group transition-all hover:scale-[1.005] active:scale-[0.99] shadow-2xl border border-blue-500/20"
                 >
-                    {/* Background with advanced gradient and glassmorphism */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-700/80 via-blue-800/90 to-slate-900 mix-blend-overlay"></div>
                     <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-2xl group-hover:bg-slate-900/40 transition-colors"></div>
-                    
-                    {/* Subtly animated glow decorations */}
                     <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-all duration-700"></div>
                     <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] group-hover:bg-cyan-500/20 transition-all duration-700"></div>
-
-                    {/* Content - Fully Centered */}
-                    <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
-                        <div className="flex flex-col items-center gap-4">
-                            <div className="w-20 h-20 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.15)] group-hover:scale-110 group-hover:border-blue-400/50 transition-all duration-500">
-                                <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+ 
+                    <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-6 sm:space-y-8">
+                        <div className="flex flex-col items-center gap-3 sm:gap-4">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 border border-blue-500/30 shadow-[0_0_30_rgba(59,130,246,0.15)] group-hover:scale-110 group-hover:border-blue-400/50 transition-all duration-500">
+                                <svg className="w-7 h-7 sm:w-10 sm:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
                             </div>
-                            <div className="space-y-3">
-                                <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tighter leading-tight">
+                            <div className="space-y-2 sm:space-y-3">
+                                <h2 className="text-xl sm:text-4xl font-black text-white tracking-tighter leading-tight">
                                     事例をシェアして、<br className="sm:hidden" />カマチグループのDXを盛り上げる。
                                 </h2>
-                                <p className="text-blue-200/60 font-bold text-lg max-w-2xl mx-auto">
+                                <p className="text-blue-200/60 font-bold text-sm sm:text-lg max-w-2xl mx-auto">
                                     あなたの現場での「試してみた」が、グループ全体の新しい力になります。
                                 </p>
                             </div>
                         </div>
                         
-                        <div className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-xl font-black text-lg shadow-[0_15px_40px_rgba(59,130,246,0.4)] transition-all transform group-hover:-translate-y-1">
+                        <div className="inline-flex items-center gap-2 sm:gap-3 bg-blue-600 hover:bg-blue-500 text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl font-black text-sm sm:text-lg shadow-[0_15px_40px_rgba(59,130,246,0.4)] transition-all transform group-hover:-translate-y-1">
                             今すぐ投稿フォームを開く
-                            <svg className="w-6 h-6 transition-transform group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                             </svg>
                         </div>
@@ -316,11 +312,9 @@ export default function LibraryPage() {
                 </div>
             </div>
 
-            {/* Padding for below-hero content */}
             <div className="px-4 sm:px-6 lg:px-10">
                 {showDashboard && renderDashboard()}
 
-                {/* ===== Search & Filter ===== */}
                 <div className="flex flex-col md:flex-row gap-3 items-center justify-between mb-10 relative z-20">
                     <div className="flex flex-1 w-full gap-3 items-center">
                         <div className="relative max-w-md w-full">
@@ -335,7 +329,6 @@ export default function LibraryPage() {
                                 className="w-full pl-11 pr-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:bg-slate-800/80 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/30 focus:outline-none transition-all"
                             />
                         </div>
-                        {/* Tag filter as pill buttons */}
                         <div className="hidden md:flex items-center gap-2 overflow-x-auto hide-scrollbar flex-shrink-0">
                             <button
                                 onClick={() => setTagFilter("")}
@@ -369,7 +362,6 @@ export default function LibraryPage() {
                     )}
                 </div>
 
-                {/* ===== Prime Video Carousel Rows ===== */}
                 <div className="space-y-10">
                     {(tagFilter ? [tagFilter] : uniqueTags.length > 0 ? uniqueTags : ['全ての動画']).map((tag) => {
                         const rowLessons = tagFilter ? filteredLessons : filteredLessons.filter(l => tag === '全ての動画' ? true : l.tags?.includes(tag));
@@ -383,7 +375,6 @@ export default function LibraryPage() {
                                     <svg className="w-4 h-4 text-slate-600 opacity-0 group-hover/row:opacity-100 transition-all translate-x-[-8px] group-hover/row:translate-x-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
                                 </h2>
 
-                                {/* Horizontal scroll carousel */}
                                 <div className="flex overflow-x-auto gap-4 pb-6 pt-2 snap-x snap-mandatory hide-scrollbar scroll-smooth -mx-4 sm:-mx-6 lg:-mx-10 px-4 sm:px-6 lg:px-10">
                                     {rowLessons.map(lesson => (
                                         <div
@@ -391,9 +382,7 @@ export default function LibraryPage() {
                                             onClick={() => router.push(`/lesson/${lesson.lesson_id}`)}
                                             className="group relative flex-none w-[260px] sm:w-[300px] md:w-[320px] rounded-xl overflow-visible cursor-pointer snap-start"
                                         >
-                                            {/* Thumbnail */}
                                             <div className="relative aspect-video bg-slate-800 rounded-xl overflow-hidden card-glow group-hover:z-30">
-                                                {/* Badge */}
                                                 {lesson.required ? (
                                                     <span className="absolute top-2 left-2 z-10 flex items-center gap-1 bg-blue-600/90 backdrop-blur text-white text-[9px] font-black px-2 py-0.5 rounded-md tracking-wider shadow-lg">
                                                         <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
@@ -405,7 +394,6 @@ export default function LibraryPage() {
                                                     </span>
                                                 )}
 
-                                                {/* Progress bar */}
                                                 {lesson.required && (
                                                     <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-800/80">
                                                         {lesson.hasAnswered ? (
@@ -422,7 +410,6 @@ export default function LibraryPage() {
                                                     <div className="w-full h-full flex items-center justify-center text-slate-600 text-sm font-semibold">No Image</div>
                                                 )}
 
-                                                {/* Play overlay */}
                                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                                                     <div className="w-14 h-14 rounded-full border-2 border-white flex items-center justify-center bg-black/50 backdrop-blur-sm shadow-xl">
                                                         <svg className="w-7 h-7 text-white translate-x-[2px]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
@@ -430,7 +417,6 @@ export default function LibraryPage() {
                                                 </div>
                                             </div>
 
-                                            {/* Card Info */}
                                             <div className="pt-3 px-1 opacity-80 group-hover:opacity-100 transition-opacity">
                                                 <div className="flex items-center gap-2 text-[10px] font-bold mb-1.5">
                                                     {lesson.hasAnswered

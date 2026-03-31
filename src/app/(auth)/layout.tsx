@@ -98,16 +98,16 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                         </div>
 
                         {/* Nav tabs */}
-                        <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+                        <div className="flex items-center gap-1 sm:gap-2 absolute left-1/2 -translate-x-1/2">
                             <button
                                 onClick={() => router.push('/library')}
-                                className={`px-5 py-2 rounded text-sm font-semibold transition-all ${pathname?.startsWith('/library') ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                className={`px-3 sm:px-5 py-1.5 sm:py-2 rounded text-[11px] sm:text-sm font-black transition-all tracking-tight sm:tracking-normal ${pathname?.startsWith('/library') ? 'text-white bg-blue-600/30 border border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.2)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                             >
                                 ライブラリ
                             </button>
                             <button
                                 onClick={() => router.push('/cases')}
-                                className={`px-5 py-2 rounded text-sm font-semibold transition-all ${pathname?.startsWith('/cases') ? 'text-white bg-blue-600/20 border border-blue-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                                className={`px-3 sm:px-5 py-1.5 sm:py-2 rounded text-[11px] sm:text-sm font-black transition-all tracking-tight sm:tracking-normal ${pathname?.startsWith('/cases') ? 'text-white bg-blue-600/30 border border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.2)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                             >
                                 事例投稿
                             </button>
