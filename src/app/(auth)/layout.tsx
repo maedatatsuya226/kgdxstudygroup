@@ -113,16 +113,16 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                             </button>
                         </div>
 
-                        {/* Floating Action Button (FAB) for mobile and desktop */}
-                        <div className="fixed bottom-8 right-8 z-[100]">
+                        {/* Floating Action Button (FAB) - Ensure fixed at BOTTOM right to avoid clipping at the top */}
+                        <div className="fixed bottom-10 right-10 z-[9999] pointer-events-auto">
                             <button
                                 onClick={() => router.push('/cases/new')}
-                                className="group flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white w-14 h-14 md:w-auto md:px-6 md:h-14 rounded-full md:rounded-2xl shadow-[0_8px_30px_rgba(59,130,246,0.5)] transition-all duration-300 hover:scale-105 active:scale-95"
+                                className="group flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 h-14 rounded-2xl shadow-[0_10px_40px_rgba(59,130,246,0.6)] transition-all duration-300 hover:scale-105 active:scale-95 border border-blue-400/30"
                             >
                                 <svg className="w-6 h-6 transition-transform group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                                 </svg>
-                                <span className="hidden md:block font-black tracking-tight">事例を投稿する</span>
+                                <span className="font-black tracking-tight">事例を投稿する</span>
                             </button>
                         </div>
 

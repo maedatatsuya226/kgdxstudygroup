@@ -294,10 +294,10 @@ export default function LibraryPage() {
                             </div>
                             <div className="space-y-1">
                                 <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                                    事例をシェアして、リハビリをアップデート。
+                                    事例をシェアして、カマチグループのDXを盛り上げる。
                                 </h2>
                                 <p className="text-blue-200/70 font-bold text-sm tracking-wide">
-                                    あなたの現場での「試してみた」が、誰かの新しい発見になります。
+                                    あなたの現場での「試してみた」が、グループ全体の新しい力になります。
                                 </p>
                             </div>
                         </div>
