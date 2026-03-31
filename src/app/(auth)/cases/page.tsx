@@ -49,8 +49,21 @@ export default function CaseGalleryPage() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
                 
                 <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div>
-                        <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-slate-400">
+                    <div className="space-y-4">
+                        {/* Post Counter Badge */}
+                        {!loading && cases.length > 0 && (
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/20 border border-blue-500/30 text-blue-400 animate-in slide-in-from-left duration-700">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                </span>
+                                <span className="text-xs font-black tracking-widest uppercase">
+                                    現在 <span className="text-white text-sm mx-1">{cases.length}</span> 件の知見が集まっています！
+                                </span>
+                            </div>
+                        )}
+                        
+                        <h1 className="text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-slate-400">
                             事例投稿コーナー
                         </h1>
                         <p className="text-slate-400 max-w-2xl font-medium leading-relaxed">
