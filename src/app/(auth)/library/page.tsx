@@ -275,36 +275,40 @@ export default function LibraryPage() {
             </div>
 
             {/* ===== Case Submission Banner (Belt) ===== */}
-            <div className="px-4 sm:px-6 lg:px-10 mb-10">
+            <div className="px-4 sm:px-6 lg:px-10 mb-12">
                 <div 
                     onClick={() => router.push("/cases/new")}
-                    className="relative w-full py-8 px-6 sm:px-10 rounded-2xl overflow-hidden cursor-pointer group transition-all hover:scale-[1.01] active:scale-[0.99] shadow-2xl"
+                    className="relative w-full py-12 px-6 sm:px-10 rounded-2xl overflow-hidden cursor-pointer group transition-all hover:scale-[1.005] active:scale-[0.99] shadow-2xl border border-blue-500/20"
                 >
-                    {/* Background with gradient and glassmorphism */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-blue-500/80 to-cyan-500/90 mix-blend-overlay opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xl border border-blue-500/30 group-hover:border-blue-500/50 transition-all"></div>
+                    {/* Background with advanced gradient and glassmorphism */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-700/80 via-blue-800/90 to-slate-900 mix-blend-overlay"></div>
+                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-2xl group-hover:bg-slate-900/40 transition-colors"></div>
                     
-                    {/* Content */}
-                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-6">
-                            <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-400 border border-blue-500/30 shadow-inner group-hover:scale-110 transition-transform duration-500">
-                                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    {/* Subtly animated glow decorations */}
+                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-all duration-700"></div>
+                    <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] group-hover:bg-cyan-500/20 transition-all duration-700"></div>
+
+                    {/* Content - Fully Centered */}
+                    <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="w-20 h-20 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.15)] group-hover:scale-110 group-hover:border-blue-400/50 transition-all duration-500">
+                                <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
                             </div>
-                            <div className="space-y-1">
-                                <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                                    事例をシェアして、カマチグループのDXを盛り上げる。
+                            <div className="space-y-3">
+                                <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tighter leading-tight">
+                                    事例をシェアして、<br className="sm:hidden" />カマチグループのDXを盛り上げる。
                                 </h2>
-                                <p className="text-blue-200/70 font-bold text-sm tracking-wide">
+                                <p className="text-blue-200/60 font-bold text-lg max-w-2xl mx-auto">
                                     あなたの現場での「試してみた」が、グループ全体の新しい力になります。
                                 </p>
                             </div>
                         </div>
                         
-                        <div className="flex items-center gap-2 bg-white text-black px-8 py-3.5 rounded-xl font-black text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] group-hover:bg-blue-50 transition-colors whitespace-nowrap">
-                            今すぐ投稿する
-                            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-xl font-black text-lg shadow-[0_15px_40px_rgba(59,130,246,0.4)] transition-all transform group-hover:-translate-y-1">
+                            今すぐ投稿フォームを開く
+                            <svg className="w-6 h-6 transition-transform group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                             </svg>
                         </div>
